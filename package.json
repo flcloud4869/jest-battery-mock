@@ -1,6 +1,6 @@
 {
   "name": "jest-battery-mock",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Battery api mock for jest",
   "main": "./dist/index.js",
   "types": "./dist/types/index.d.ts",
