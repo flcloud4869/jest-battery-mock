@@ -35,7 +35,7 @@ export class BatteryMock {
 
   static dispatch(type: BatteryEventType, state: BatteryState) {
     if (!("_battery_mock_storage" in navigator)) {
-      throw new Error("battery api not mock");
+      throw new Error("navigator.getBattery is not defined");
     }
 
     const target = navigator._battery_mock_storage as BatteryManager;
