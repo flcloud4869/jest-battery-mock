@@ -1,6 +1,7 @@
 import { BatteryManager } from "./BatteryManager";
 
-export type BatteryEventType = "chargingchange" | "chargingtimechange" | "dischargingtimechange" | "levelchange";
+type BatteryEventType = "chargingchange" | "chargingtimechange" | "dischargingtimechange" | "levelchange";
+type BatteryState = { charging?: boolean; chargingTime?: number; dischargingTime?: number; level?: number };
 
 export class BatteryMock {
   static mock(): void {
@@ -32,15 +33,7 @@ export class BatteryMock {
     }
   }
 
-  static dispatch(
-    type: BatteryEventType,
-    state: {
-      charging?: boolean;
-      chargingTime?: number;
-      dischargingTime?: number;
-      level?: number;
-    }
-  ): void {
+  static dispatch(type: BatteryEventType, state: BatteryState) {
     if (!("_battery_mock_storage" in navigator)) {
       throw new Error("battery api not mock");
     }
@@ -52,6 +45,6 @@ export class BatteryMock {
     typeof state.dischargingTime !== "undefined" && (target.dischargingTime = state.dischargingTime);
     typeof state.level !== "undefined" && (target.level = state.level);
 
-    target.dispatchEvent(new Event(type));
+    return target.dispatchEvent(new Event(type));
   }
 }
