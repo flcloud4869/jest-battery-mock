@@ -7,9 +7,7 @@
   "scripts": {
     "build": "shx rm -rf ./dist && tsc -b ./tsconfig.prod.json",
     "test": "jest",
-    "lint": "yarn lint:prettier && yarn lint:eslint",
-    "lint:prettier": "prettier --check {**/*,*}.{js,ts,json,md} --ignore-path ./.gitignore",
-    "lint:eslint": "eslint {**/*,*}.{js,ts} --ignore-path ./.gitignore",
+    "lint": "prettier -c -u . && eslint .",
     "postinstall": "husky install",
     "prepublishOnly": "pinst --disable",
     "postpublish": "pinst --enable"
@@ -22,12 +20,10 @@
     "README.md"
   ],
   "lint-staged": {
-    "*.{js,ts}": [
-      "prettier --write",
+    "**/*": "prettier -w -u",
+    "*.{js,jsx,ts,tsx}": [
+      "prettier -w -u",
       "eslint --fix"
-    ],
-    "*.{json,md}": [
-      "prettier --write"
     ]
   },
   "repository": {
