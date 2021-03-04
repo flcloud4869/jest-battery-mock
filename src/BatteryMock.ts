@@ -33,7 +33,7 @@ export class BatteryMock {
     }
   }
 
-  static dispatch(type: BatteryEventType, state: BatteryState) {
+  static dispatch(type: BatteryEventType, state: BatteryState): boolean {
     if (!("_battery_mock_storage" in navigator)) {
       throw new Error("navigator.getBattery is not defined");
     }
