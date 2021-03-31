@@ -13,7 +13,7 @@ export class BatteryManager extends EventTarget {
 
     // default value
     this.charging = true;
-    this.chargingTime = Infinity;
+    this.chargingTime = 0;
     this.dischargingTime = Infinity;
     this.level = 1;
     this.onchargingchange = null;

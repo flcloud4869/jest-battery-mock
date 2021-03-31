@@ -32,7 +32,7 @@ test("test", () => {
 | name            | value    |
 | --------------- | -------- |
 | charging        | true     |
-| chargingTime    | Infinity |
+| chargingTime    | 0        |
 | dischargingTime | Infinity |
 | level           | 1        |
 

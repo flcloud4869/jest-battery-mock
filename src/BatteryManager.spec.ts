@@ -4,7 +4,7 @@ test("应正确初始化预设值", () => {
   const manager = new BatteryManager();
 
   expect(manager.charging).toBe(true);
-  expect(manager.chargingTime).toBe(Infinity);
+  expect(manager.chargingTime).toBe(0);
   expect(manager.dischargingTime).toBe(Infinity);
   expect(manager.level).toBe(1);
 });
