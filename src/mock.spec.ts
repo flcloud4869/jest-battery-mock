@@ -1,5 +1,5 @@
-import { BatteryMock } from "./BatteryMock";
-import { BatteryManager } from "./BatteryManager";
+import { BatteryMock } from "./mock";
+import { BatteryManager } from "./manager";
 
 test("应能正确添加和移除 getBattery", () => {
   expect("getBattery" in navigator).toBeFalsy();

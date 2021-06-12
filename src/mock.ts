@@ -1,4 +1,4 @@
-import { BatteryManager } from "./BatteryManager";
+import { BatteryManager } from "./manager";
 
 type BatteryEventType = "chargingchange" | "chargingtimechange" | "dischargingtimechange" | "levelchange";
 type BatteryState = { charging?: boolean; chargingTime?: number; dischargingTime?: number; level?: number };

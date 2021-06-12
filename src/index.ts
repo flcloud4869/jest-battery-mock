@@ -1,1 +1,1 @@
-export * from "./BatteryMock";
+export * from "./mock";

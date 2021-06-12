@@ -1,4 +1,4 @@
-import { BatteryManager } from "./BatteryManager";
+import { BatteryManager } from "./manager";
 
 test("应正确初始化预设值", () => {
   const manager = new BatteryManager();

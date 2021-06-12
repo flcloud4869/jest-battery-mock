@@ -1,4 +1,4 @@
-import { BatteryManager } from "./BatteryManager";
+import { BatteryManager } from "./manager";
 
 declare global {
   // eslint-disable-next-line
