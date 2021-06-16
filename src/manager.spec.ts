@@ -38,52 +38,44 @@ test("应在事件回调中包含当前电池状态", done => {
   manager.dispatchEvent(new Event("levelchange"));
 });
 
-test("onchargingchange", done => {
+test("应在 chargingchange 事件触发时触发 onchargingchange 属性绑定的函数", done => {
   const manager = new BatteryManager();
 
-  manager.onchargingchange = event => {
-    const target = event.target as BatteryManager;
-    expect(event.type).toBe("chargingchange");
-    expect(target.charging).toBe(true);
+  manager.onchargingchange = evt => {
+    expect(evt.type).toBe("chargingchange");
     done();
   };
 
   manager.dispatchEvent(new Event("chargingchange"));
 });
 
-test("onchargingtimechange", done => {
+test("应在 chargingtimechange 事件触发时触发 onchargingtimechange 属性绑定的函数", done => {
   const manager = new BatteryManager();
 
-  manager.onchargingtimechange = event => {
-    const target = event.target as BatteryManager;
-    expect(event.type).toBe("chargingtimechange");
-    expect(target.charging).toBe(true);
+  manager.onchargingtimechange = evt => {
+    expect(evt.type).toBe("chargingtimechange");
     done();
   };
 
   manager.dispatchEvent(new Event("chargingtimechange"));
 });
 
-test("ondischargingtimechange", done => {
+test("应在 dischargingtimechange 事件触发时触发 ondischargingtimechange 属性绑定的函数", done => {
   const manager = new BatteryManager();
 
-  manager.ondischargingtimechange = event => {
-    const target = event.target as BatteryManager;
-    expect(event.type).toBe("dischargingtimechange");
-    expect(target.charging).toBe(true);
+  manager.ondischargingtimechange = evt => {
+    expect(evt.type).toBe("dischargingtimechange");
     done();
   };
 
   manager.dispatchEvent(new Event("dischargingtimechange"));
 });
 
-test("onlevelchange", done => {
+test("应在 levelchange 事件触发时触发 onlevelchange 属性绑定的函数", done => {
   const manager = new BatteryManager();
 
-  manager.onlevelchange = event => {
-    const target = event.target as BatteryManager;
-    expect(event.type).toBe("levelchange");
-    expect(target.charging).toBe(true);
+  manager.onlevelchange = evt => {
+    expect(evt.type).toBe("levelchange");
     done();
   };
 

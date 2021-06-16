@@ -1,7 +1,11 @@
 import { BatteryMock } from "./mock";
 import { BatteryManager } from "./manager";
 
-test("应能正确添加和移除 getBattery", () => {
+afterEach(() => {
+  BatteryMock.clean();
+});
+
+test("应正确添加和移除 navigator.getBattery", () => {
   expect("getBattery" in navigator).toBeFalsy();
 
   BatteryMock.mock();
@@ -11,12 +15,14 @@ test("应能正确添加和移除 getBattery", () => {
   expect("getBattery" in navigator).toBeFalsy();
 });
 
-test("应在执行 getBattery 后获取到电池状态", done => {
+test("getBattery 返回的 promise 中应包含电池状态", done => {
   BatteryMock.mock();
-
-  if (!navigator.getBattery) throw new Error();
+  if (!navigator.getBattery) throw Error();
 
   navigator.getBattery().then(manager => {
+    expect(manager.charging).toBe(true);
+    expect(manager.chargingTime).toBe(0);
+    expect(manager.dischargingTime).toBe(Infinity);
     expect(manager.level).toBe(1);
     done();
   });
@@ -24,28 +30,63 @@ test("应在执行 getBattery 后获取到电池状态", done => {
   BatteryMock.clean();
 });
 
-test("dispatch 方法应能改变电池状态并触发事件", async done => {
+test("应在执行 dispatch 方法时触发注册的事件", done => {
   BatteryMock.mock();
+  if (!navigator.getBattery) throw Error();
 
-  if (!navigator.getBattery) throw new Error();
+  navigator.getBattery().then(manager => {
+    manager.addEventListener("levelchange", evt => {
+      const target = evt.target as BatteryManager;
+      expect(evt.type).toBe("levelchange");
+      expect(target.charging).toBe(true);
+      expect(target.chargingTime).toBe(0);
+      expect(target.dischargingTime).toBe(Infinity);
+      expect(target.level).toBe(1);
+      done();
+    });
 
-  const manager = await navigator.getBattery();
-
-  manager.addEventListener("levelchange", event => {
-    const target = event.target as BatteryManager;
-    expect(event.type).toBe("levelchange");
-    expect(target.charging).toBe(false);
-    expect(target.chargingTime).toBe(30);
-    expect(target.dischargingTime).toBe(30);
-    expect(target.level).toBe(0.5);
-
-    done();
+    BatteryMock.dispatch("levelchange", {});
   });
+});
 
-  BatteryMock.dispatch("levelchange", {
-    charging: false,
-    chargingTime: 30,
-    dischargingTime: 30,
-    level: 0.5,
+test("应在执行 dispatch 方法时正确更新状态值", done => {
+  BatteryMock.mock();
+  if (!navigator.getBattery) throw Error();
+
+  navigator.getBattery().then(manager => {
+    manager.addEventListener("levelchange", evt => {
+      const target = evt.target as BatteryManager;
+      expect(evt.type).toBe("levelchange");
+      expect(target.charging).toBe(false);
+      expect(target.chargingTime).toBe(100);
+      expect(target.dischargingTime).toBe(100);
+      expect(target.level).toBe(0.5);
+      done();
+    });
+
+    BatteryMock.dispatch("levelchange", {
+      charging: false,
+      chargingTime: 100,
+      dischargingTime: 100,
+      level: 0.5,
+    });
   });
+});
+
+test("应在重复 mock 时抛出异常", () => {
+  const runner = () => {
+    BatteryMock.mock();
+    BatteryMock.mock();
+  };
+
+  expect(runner).toThrow("navigator.getBattery is defined");
+});
+
+test("应在执行 dispatch 时检查 mock 状态", () => {
+  const runner = () => {
+    BatteryMock.clean();
+    BatteryMock.dispatch("levelchange", {});
+  };
+
+  expect(runner).toThrow("navigator.getBattery is not defined");
 });
