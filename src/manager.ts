@@ -1,74 +1,40 @@
 export class BatteryManager extends EventTarget {
-  charging: boolean;
-  chargingTime: number;
-  dischargingTime: number;
-  level: number;
-  onchargingchange: EventListener | null;
-  onchargingtimechange: EventListener | null;
-  ondischargingtimechange: EventListener | null;
-  onlevelchange: EventListener | null;
+  charging = true;
+  chargingTime = 0;
+  dischargingTime = Infinity;
+  level = 1;
+  onchargingchange: EventListener | undefined = undefined;
+  onchargingtimechange: EventListener | undefined = undefined;
+  ondischargingtimechange: EventListener | undefined = undefined;
+  onlevelchange: EventListener | undefined = undefined;
 
   constructor() {
     super();
-
-    // default value
-    this.charging = true;
-    this.chargingTime = 0;
-    this.dischargingTime = Infinity;
-    this.level = 1;
-    this.onchargingchange = null;
-    this.onchargingtimechange = null;
-    this.ondischargingtimechange = null;
-    this.onlevelchange = null;
   }
 
   dispatchEvent(event: Event): boolean {
-    if (typeof this.onchargingchange === "function" && event.type === "chargingchange") {
-      const eventData: Event = {
-        ...new Event("chargingchange"),
-        type: "chargingchange",
-        currentTarget: this,
-        srcElement: this,
-        target: this,
-      };
-
-      this.onchargingchange.call(this, eventData);
+    if (this.onchargingchange && event.type === "chargingchange") {
+      const changeEvt: Event = { ...new Event("chargingchange"), type: "chargingchange" };
+      const evt: Event = { ...changeEvt, currentTarget: this, srcElement: this, target: this };
+      this.onchargingchange.call(this, evt);
     }
 
-    if (typeof this.onchargingtimechange === "function" && event.type === "chargingtimechange") {
-      const eventData: Event = {
-        ...new Event("chargingtimechange"),
-        type: "chargingtimechange",
-        currentTarget: this,
-        srcElement: this,
-        target: this,
-      };
-
-      this.onchargingtimechange.call(this, eventData);
+    if (this.onchargingtimechange && event.type === "chargingtimechange") {
+      const changeEvt: Event = { ...new Event("chargingtimechange"), type: "chargingtimechange" };
+      const evt: Event = { ...changeEvt, currentTarget: this, srcElement: this, target: this };
+      this.onchargingtimechange.call(this, evt);
     }
 
-    if (typeof this.ondischargingtimechange === "function" && event.type === "dischargingtimechange") {
-      const eventData: Event = {
-        ...new Event("dischargingtimechange"),
-        type: "dischargingtimechange",
-        currentTarget: this,
-        srcElement: this,
-        target: this,
-      };
-
-      this.ondischargingtimechange.call(this, eventData);
+    if (this.ondischargingtimechange && event.type === "dischargingtimechange") {
+      const changeEvt: Event = { ...new Event("dischargingtimechange"), type: "dischargingtimechange" };
+      const evt: Event = { ...changeEvt, currentTarget: this, srcElement: this, target: this };
+      this.ondischargingtimechange.call(this, evt);
     }
 
-    if (typeof this.onlevelchange === "function" && event.type === "levelchange") {
-      const eventData: Event = {
-        ...new Event("levelchange"),
-        type: "levelchange",
-        currentTarget: this,
-        srcElement: this,
-        target: this,
-      };
-
-      this.onlevelchange.call(this, eventData);
+    if (this.onlevelchange && event.type === "levelchange") {
+      const changeEvt: Event = { ...new Event("levelchange"), type: "levelchange" };
+      const evt: Event = { ...changeEvt, currentTarget: this, srcElement: this, target: this };
+      this.onlevelchange.call(this, evt);
     }
 
     return super.dispatchEvent(event);
