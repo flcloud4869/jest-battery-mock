@@ -45,7 +45,7 @@ test("应在执行 dispatch 方法时触发注册的事件", done => {
       done();
     });
 
-    BatteryMock.dispatch("levelchange", {});
+    BatteryMock.dispatch("levelchange");
   });
 });
 
@@ -85,7 +85,7 @@ test("应在重复 mock 时抛出异常", () => {
 test("应在执行 dispatch 时检查 mock 状态", () => {
   const runner = () => {
     BatteryMock.clean();
-    BatteryMock.dispatch("levelchange", {});
+    BatteryMock.dispatch("levelchange");
   };
 
   expect(runner).toThrow("navigator.getBattery is not defined");

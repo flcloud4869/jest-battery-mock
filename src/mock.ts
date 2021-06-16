@@ -1,7 +1,7 @@
 import { BatteryManager } from "./manager";
 
 type BatteryEventType = "chargingchange" | "chargingtimechange" | "dischargingtimechange" | "levelchange";
-type BatteryState = { charging?: boolean; chargingTime?: number; dischargingTime?: number; level?: number };
+type BatteryState = Partial<{ charging: boolean; chargingTime: number; dischargingTime: number; level: number }>;
 
 export class BatteryMock {
   static mock(): void {
@@ -33,17 +33,17 @@ export class BatteryMock {
     }
   }
 
-  static dispatch(type: BatteryEventType, state: BatteryState): boolean {
+  static dispatch(type: BatteryEventType, state?: BatteryState): boolean {
     if (!("_battery_mock_storage" in navigator)) {
       throw new Error("navigator.getBattery is not defined");
     }
 
     const target = navigator._battery_mock_storage as BatteryManager;
 
-    typeof state.charging !== "undefined" && (target.charging = state.charging);
-    typeof state.chargingTime !== "undefined" && (target.chargingTime = state.chargingTime);
-    typeof state.dischargingTime !== "undefined" && (target.dischargingTime = state.dischargingTime);
-    typeof state.level !== "undefined" && (target.level = state.level);
+    target.charging = state?.charging ?? target.charging;
+    target.chargingTime = state?.chargingTime ?? target.chargingTime;
+    target.dischargingTime = state?.dischargingTime ?? target.dischargingTime;
+    target.level = state?.level ?? target.level;
 
     return target.dispatchEvent(new Event(type));
   }
