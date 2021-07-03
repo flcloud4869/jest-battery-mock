@@ -4,8 +4,7 @@ Battery api mock for jest
 
 ![npm](https://img.shields.io/npm/v/jest-battery-mock?logo=npm&style=for-the-badge)
 ![CI](https://img.shields.io/github/workflow/status/nodoccat/jest-battery-mock/CI?label=CI&logo=github&style=for-the-badge)
-![code quality](https://img.shields.io/codacy/grade/422d3cf176954f3a95c0ac06b4eada14?logo=codacy&style=for-the-badge)
-![coverage](https://img.shields.io/codacy/coverage/422d3cf176954f3a95c0ac06b4eada14?logo=codacy&style=for-the-badge)
+![COVERAGE](https://img.shields.io/codecov/c/github/nodoccat/jest-battery-mock?logo=codecov&style=for-the-badge)
 
 ## Install
 
