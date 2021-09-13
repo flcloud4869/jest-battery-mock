@@ -14,6 +14,7 @@ updates:
   - package-ecosystem: npm
     directory: /
     rebase-strategy: disabled
+    open-pull-requests-limit: 1
     schedule:
       interval: monthly
     assignees:
