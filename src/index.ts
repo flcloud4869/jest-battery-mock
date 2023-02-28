@@ -25,24 +25,26 @@ export function dispatch (state?: Partial<BatteryInfo>) {
   }
 
   const target = navigator._BATTERY_MANAGER_STORAGE
-  target.charging = state?.charging ?? target.charging
-  target.chargingTime = state?.chargingTime ?? target.chargingTime
-  target.dischargingTime = state?.dischargingTime ?? target.dischargingTime
-  target.level = state?.level ?? target.level
+  const events: Event[] = []
 
-  if (state?.charging) {
-    target.dispatchEvent(new Event('chargingchange'))
+  if (state?.charging !== undefined && state.charging !== target.charging) {
+    target.charging = state.charging
+    events.push(new Event('chargingchange'))
   }
-  if (state?.chargingTime) {
-    target.dispatchEvent(new Event('chargingtimechange'))
+  if (state?.chargingTime !== undefined && state.chargingTime !== target.chargingTime) {
+    target.chargingTime = state.chargingTime
+    events.push(new Event('chargingtimechange'))
   }
-  if (state?.dischargingTime) {
-    target.dispatchEvent(new Event('dischargingtimechange'))
+  if (state?.dischargingTime !== undefined && state.dischargingTime !== target.dischargingTime) {
+    target.dischargingTime = state.dischargingTime
+    events.push(new Event('dischargingtimechange'))
   }
-  if (state?.level) {
-    target.dispatchEvent(new Event('levelchange'))
+  if (state?.level !== undefined && state.level !== target.level) {
+    target.level = state.level
+    events.push(new Event('levelchange'))
   }
 
+  events.forEach(evt => target.dispatchEvent(evt))
   return true
 }
 
