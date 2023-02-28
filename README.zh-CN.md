@@ -1,6 +1,6 @@
 # jest-battery-mock
 
-BatteryManager API mock for Jest
+用于 Jest 的 BatteryManager API 模拟
 
 [English](./README.md) | [简体中文](./README.zh-CN.md)
 
@@ -8,13 +8,13 @@ BatteryManager API mock for Jest
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/nodoccat/jest-battery-mock/ci.yml?label=CI&logo=github-actions&logoColor=white&style=for-the-badge)
 ![Codecov](https://img.shields.io/codecov/c/github/nodoccat/jest-battery-mock?logo=codecov&style=for-the-badge)
 
-## Installation
+## 安装
 
 ```bash
 pnpm add -D jest-battery-mock
 ```
 
-## Example
+## 示例
 
 ```typescript
 import { enableMock, disableMock, dispatch } from 'jest-battery-mock'
@@ -36,17 +36,17 @@ test('example', async () => {
 
 ### enableMock
 
-Enable mock for `navigator.getBattery`
+启用 `navigator.getBattery` 模拟
 
 ```typescript
 type enableMock = (preset?: BatteryInfo) => void
 ```
 
-You can set `BatteryManager` initial state with `preset`, By default use `PRESET_COMMON`
+你可以使用 preset 设置 `BatteryManager` 的初始状态，默认使用 `PRESET_COMMON`
 
 ### disableMock
 
-Disable mock for `navigator.getBattery`
+禁用 `navigator.getBattery` 模拟
 
 ```typescript
 type disableMock = () => void
@@ -54,17 +54,17 @@ type disableMock = () => void
 
 ### dispatch
 
-Change `BatteryManager` state and trigger event, **trigger the corresponding event only when the state changes**
+修改 `BatteryManager` 的状态并触发事件，**只有状态发生变化时才会触发对应事件**
 
 ```typescript
 type dispatch = (state?: Partial<BatteryInfo>) => boolean
 ```
 
-You can also use preset here
+你也可以在这里使用预设
 
-## Preset
+## 预设
 
-We have some presets for you, you can use it when call `enableMock` and `dispatch`:
+我们提供了一些预设，你可以在调用 `enableMock` 和 `dispatch` 时使用：
 
 |                 | PRESET_COMMON | PRESET_USE_BATTERY | PRESET_LOW_POWER |
 |-----------------|---------------|--------------------|------------------|
@@ -73,6 +73,6 @@ We have some presets for you, you can use it when call `enableMock` and `dispatc
 | dischargingTime | Infinity      | Infinity           | 0                |
 | level           | 1             | 0.8                | 0.1              |
 
-## Reference & Thanks
+## 参考与感谢
 
 - [jest-fetch-mock](https://github.com/jefflau/jest-fetch-mock)
