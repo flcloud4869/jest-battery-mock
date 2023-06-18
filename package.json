@@ -22,15 +22,15 @@
   "files": [
     "dist"
   ],
-  "author": "NoDocCat <nodoccat@outlook.com>",
+  "author": "suiyun39 <suiyun39@gmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/NoDocCat/jest-battery-mock#readme",
+  "homepage": "https://github.com/suiyun39/jest-battery-mock#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NoDocCat/jest-battery-mock.git"
+    "url": "git+https://github.com/suiyun39/jest-battery-mock.git"
   },
   "bugs": {
-    "url": "https://github.com/NoDocCat/jest-battery-mock/issues"
+    "url": "https://github.com/suiyun39/jest-battery-mock/issues"
   },
   "keywords": [
     "jest",

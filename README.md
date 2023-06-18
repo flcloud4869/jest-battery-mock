@@ -5,8 +5,8 @@ BatteryManager API mock for Jest
 [English](./README.md) | [简体中文](./README.zh-CN.md)
 
 ![npm](https://img.shields.io/npm/v/jest-battery-mock?logo=npm&style=for-the-badge)
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/nodoccat/jest-battery-mock/ci.yml?label=CI&logo=github-actions&logoColor=white&style=for-the-badge)
-![Codecov](https://img.shields.io/codecov/c/github/nodoccat/jest-battery-mock?logo=codecov&style=for-the-badge)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/suiyun39/jest-battery-mock/ci.yml?label=CI&logo=github-actions&logoColor=white&style=for-the-badge)
+![Codecov](https://img.shields.io/codecov/c/github/suiyun39/jest-battery-mock?logo=codecov&style=for-the-badge)
 
 ## Installation
 
