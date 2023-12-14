@@ -1,8 +1,16 @@
 {
   "name": "jest-battery-mock",
-  "type": "module",
   "version": "2.0.0",
   "description": "BatteryManager API mock for Jest",
+  "repository": "github:suiyun39/jest-battery-mock",
+  "license": "MIT",
+  "keywords": [
+    "jest",
+    "jest-mock",
+    "jsdom"
+  ],
+  "type": "module",
+  "packageManager": "pnpm@8.5.0",
   "scripts": {
     "build": "tsc && tsup",
     "lint": "eslint .",
@@ -22,22 +30,6 @@
   "files": [
     "dist"
   ],
-  "author": "suiyun39 <suiyun39@gmail.com>",
-  "license": "MIT",
-  "homepage": "https://github.com/suiyun39/jest-battery-mock#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/suiyun39/jest-battery-mock.git"
-  },
-  "bugs": {
-    "url": "https://github.com/suiyun39/jest-battery-mock/issues"
-  },
-  "keywords": [
-    "jest",
-    "jest-mock",
-    "jsdom"
-  ],
-  "packageManager": "pnpm@8.5.0",
   "devDependencies": {
     "@types/jest": "^29.5.1",
     "@types/node": "^18.16.8",
