@@ -1,6 +1,6 @@
 {
   "name": "jest-battery-mock",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "BatteryManager API mock for Jest",
   "repository": "github:suiyun39/jest-battery-mock",
   "license": "MIT",
