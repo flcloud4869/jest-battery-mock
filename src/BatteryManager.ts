@@ -6,17 +6,17 @@ export interface BatteryInfo {
 }
 
 export class BatteryManager extends EventTarget implements BatteryInfo {
-  charging: boolean
-  chargingTime: number
-  dischargingTime: number
-  level: number
+  public charging: boolean
+  public chargingTime: number
+  public dischargingTime: number
+  public level: number
 
-  onchargingchange: EventListener | null = null
-  onchargingtimechange: EventListener | null = null
-  ondischargingtimechange: EventListener | null = null
-  onlevelchange: EventListener | null = null
+  public onchargingchange: EventListener | null = null
+  public onchargingtimechange: EventListener | null = null
+  public ondischargingtimechange: EventListener | null = null
+  public onlevelchange: EventListener | null = null
 
-  constructor (preset: BatteryInfo) {
+  public constructor(preset: BatteryInfo) {
     super()
     this.charging = preset.charging
     this.chargingTime = preset.chargingTime
@@ -24,7 +24,7 @@ export class BatteryManager extends EventTarget implements BatteryInfo {
     this.level = preset.level
   }
 
-  dispatchEvent (event: Event) {
+  public dispatchEvent(event: Event) {
     if (event.type === 'chargingchange') {
       this.onchargingchange?.({ ...event, currentTarget: this, target: this })
     }

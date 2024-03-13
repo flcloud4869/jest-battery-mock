@@ -1,4 +1,5 @@
-import { disableMock, dispatch, enableMock, BatteryManager, PRESET_LOW_POWER } from '../src'
+import { afterEach, test, expect, jest } from '@jest/globals'
+import { disableMock, dispatch, enableMock, type BatteryManager, PRESET_LOW_POWER } from '../src'
 
 interface Navigator {
   getBattery: () => Promise<BatteryManager>
@@ -72,7 +73,7 @@ test('未更新的状态不触发对应的 change 事件', async () => {
   expect(callback).toBeCalledTimes(0)
 })
 
-test('未启用 mock 时执行 dispatch 应提示错误', async () => {
+test('未启用 mock 时执行 dispatch 应提示错误', () => {
   console.error = jest.fn()
   disableMock()
 

@@ -1,4 +1,4 @@
-import { BatteryManager, BatteryInfo } from './BatteryManager'
+import { BatteryManager, type BatteryInfo } from './BatteryManager'
 import { PRESET_COMMON } from './preset'
 
 interface Navigator {
@@ -8,17 +8,18 @@ interface Navigator {
 
 declare const navigator: Navigator
 
-export function enableMock (preset: BatteryInfo = PRESET_COMMON) {
+export function enableMock(preset: BatteryInfo = PRESET_COMMON) {
   navigator._BATTERY_MANAGER_STORAGE = new BatteryManager(preset)
-  navigator.getBattery = () => Promise.resolve(navigator._BATTERY_MANAGER_STORAGE!)
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  navigator.getBattery = async () => Promise.resolve(navigator._BATTERY_MANAGER_STORAGE!)
 }
 
-export function disableMock () {
+export function disableMock() {
   delete navigator.getBattery
   delete navigator._BATTERY_MANAGER_STORAGE
 }
 
-export function dispatch (state?: Partial<BatteryInfo>) {
+export function dispatch(state?: Partial<BatteryInfo>) {
   if (!navigator.getBattery || !navigator._BATTERY_MANAGER_STORAGE) {
     console.error('Please enable mock first.')
     return false

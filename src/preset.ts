@@ -1,4 +1,4 @@
-import { BatteryInfo } from './BatteryManager'
+import type { BatteryInfo } from './BatteryManager'
 
 export const PRESET_COMMON: BatteryInfo = {
   charging: true,
